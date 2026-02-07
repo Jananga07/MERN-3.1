@@ -1,0 +1,34 @@
+/* Reset some default list styles */
+.home-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  /* Navbar layout */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: #1e1e2f;
+  height: 70px;
+}
+
+/* Each navigation item */
+.home-ll {
+  cursor: pointer;
+}
+
+/* Text inside nav items */
+.home-ll h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect */
+.home-ll h1:hover {
+  color: #00d4ff;
+  transform: scale(1.05);
+}

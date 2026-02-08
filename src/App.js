@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Components/Home/Home';
-import User from "./Components/Add User/User";
+import User from "./Components/User/User";
 import Users from "./Components/UserDetails/Users";
 
 function App() {

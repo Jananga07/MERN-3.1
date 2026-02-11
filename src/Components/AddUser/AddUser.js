@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Nav from "../Nav/Nav";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function AddUser(){
@@ -21,7 +21,7 @@ function AddUser(){
     }
 
     const handleSubmit = (e) =>{
-        e.prevventDefault();
+        e.preventDefault();
         console.log(inputs);
         sendRequest().then(()=>history('userdetails'))
     }
@@ -30,7 +30,7 @@ function AddUser(){
         await axios.post("http://localhost:5000/users",{
             name: String(inputs.name),
             gmail: String(inputs.gmail),
-            age: String(inputs.nage),
+            age: String(inputs.age),
             address: String(inputs.address),
         })
     }
@@ -55,10 +55,12 @@ function AddUser(){
                 <br></br> 
                 <label>address</label>
                 <br/>
-                <input type="text" name="address" onChange={handleChange} value={inputts.address} required></input>
+                <input type="text" name="address" onChange={handleChange} value={inputs.address} required></input>
                 <br></br> 
                 <button>Submit</button>
             </form>
         </div>
-    )
+    );
 }
+
+export default AddUser;

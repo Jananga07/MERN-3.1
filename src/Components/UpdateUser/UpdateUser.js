@@ -1,17 +1,38 @@
-import React, { useState } from "react";
-import Nav from "../Nav/Nav";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect,useState} from "react";
+import axiosfrom  from "axios";
+import { useParams } from "react-router";
+import { useNavigate } from "react-router";
 import axios from "axios";
 
-function AddUser(){
-    const history = useNavigate();
-    const [inputs,setInputs] = useState({
-        name:"",
-        gmail:"",
-        age:"",
-        address:"",
+function UpdateUser() {
 
-    });
+    const [inputs, setInputs] = useState({});
+    const history = useNavigate( );
+    const id = useParams().id;
+
+    useEffect(() =>{
+        const fetchHandler = async ()=> {
+            await axios
+            .get(`http://localhost:5000/users/${id}`)
+            .then((res)=> res.data)
+            .then((data)=> setInputs(data.user));
+        };
+        fetchHandler();
+    },[id]);
+
+    //data add to 
+    const sendRequest = async ()=> {
+        await axios
+        .put(`http://localhost:5000/users/${id}`,{
+            name: String(inputs.name),
+            gmail: String(inputs.gmail),
+            age: Number(inputs.age),
+            address: String(inputs.address),
+
+        })
+
+        .then((res)=> res.data);
+    };
 
     const handleChange =(e)=>{
         setInputs((prevState) =>({
@@ -23,24 +44,15 @@ function AddUser(){
     const handleSubmit =  async (e) =>{
         e.preventDefault();
         console.log(inputs);
-        await sendRequest();
-        history('userdetails');
+        sendRequest().then(() =>
+        history("/userdetails"));
     };
 
-    const sendRequest = async()=>{
-        await axios.post("http://localhost:5000/users",{
-            name: String(inputs.name),
-            gmail: String(inputs.gmail),
-            age: Number(inputs.age),
-            address: String(inputs.address),
-        })
-    }
 
 
     return (
         <div>
-            <Nav />
-            <h1>Add User</h1>
+            <h1>Update User</h1>
             <form onSubmit={handleSubmit}>
                 <label>name</label>
                 <br/>
@@ -64,4 +76,5 @@ function AddUser(){
     );
 }
 
-export default AddUser;
+export default UpdateUser;
+

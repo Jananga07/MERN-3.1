@@ -1,0 +1,92 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Home container */
+.home {
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
+  min-height: 100vh;
+}
+
+/* Introduction section */
+.intro {
+  background: #00acc1;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.intro p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Cards container */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 40px 20px;
+  gap: 25px;
+}
+
+/* Individual card */
+.card {
+  background-color: white;
+  width: 250px;
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+  color: #00acc1;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.card button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #00acc1;
+  color: white;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card button:hover {
+  background-color: #00838f;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 25px 0;
+  color: #555;
+  background: #e0f7fa;
+  margin-top: 40px;
+}

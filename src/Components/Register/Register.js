@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Nav from "../Nav/Nav";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+
+  const navigate = useNavigate();
 
   const [inputs, setInputs] = useState({
     name: "",
@@ -18,7 +21,7 @@ function Register() {
   };
 
   const sendRequest = async () => {
-    await axios.post("http://localhost:5000/register", inputs);
+    return await axios.post("http://localhost:5000/register", inputs);
   };
 
   const handleSubmit = async (e) => {
@@ -26,6 +29,7 @@ function Register() {
     try {
       await sendRequest();
       alert("User Registered Successfully!");
+      navigate("/userdetails");  // 🔥 Important
     } catch (err) {
       console.error(err);
       alert("Registration Failed");
@@ -34,43 +38,58 @@ function Register() {
 
   return (
     <div>
-      <Nav />
-      <h1>User Register</h1>
+  <Nav />
+  <h1>User Register</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          value={inputs.name}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
-
-        <label>Gmail</label>
-        <input
-          type="email"
-          name="gmail"
-          value={inputs.gmail}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
-
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={inputs.password}
-          onChange={handleChange}
-          required
-        />
-        <br /><br />
-
-        <button type="submit">Register</button>
-      </form>
+  <form onSubmit={handleSubmit}>
+    
+    <div>
+      <label htmlFor="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value={inputs.name}
+        onChange={handleChange}
+        required
+      />
     </div>
+
+    <br />
+
+    <div>
+      <label htmlFor="gmail">Email</label>
+      <input
+        type="email"
+        id="gmail"
+        name="gmail"
+        value={inputs.gmail}
+        onChange={handleChange}
+        required
+      />
+    </div>
+
+    <br />
+
+    <div>
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        value={inputs.password}
+        onChange={handleChange}
+        required
+      />
+    </div>
+
+    <br />
+
+    <button type="submit">Register</button>
+
+  </form>
+</div>
+
   );
 }
 
